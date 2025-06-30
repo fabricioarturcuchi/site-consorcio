@@ -4,6 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Raros Capital - Consórcios</title>
+
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XFQ7KMD7XB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-XFQ7KMD7XB');
+  </script>
+
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -94,6 +104,36 @@
     form button:hover {
       background: #c49b2e;
     }
+    .cta-button {
+      display: inline-block;
+      padding: 14px 30px;
+      background: linear-gradient(135deg, #d4af37, #c49b2e);
+      color: #0d0d0d;
+      font-weight: bold;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      margin: 30px auto;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+      position: relative;
+    }
+    .cta-button::after {
+      content: "✨";
+      position: absolute;
+      right: 15px;
+      top: 12px;
+      animation: pulse 1.8s infinite ease-in-out;
+    }
+    .cta-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 18px rgba(212, 175, 55, 0.8);
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.3); opacity: 0.6; }
+    }
     .whatsapp-link {
       text-align: center;
       margin-top: 20px;
@@ -153,7 +193,6 @@
     <input type="hidden" name="_template" value="box">
     <input type="hidden" name="_next" value="https://fabricioarturcuchi.github.io/site-consorcio/obrigado.html">
 
-
     <label for="nome">Nome completo *</label>
     <input type="text" id="nome" name="Nome" required />
 
@@ -175,6 +214,13 @@
     <button type="submit">Enviar</button>
   </form>
 
+  <!-- Botão animado para simulador -->
+  <div style="text-align: center; margin-top: 30px;">
+    <a href="https://fabricioarturcuchi.github.io/site-consorcio/simulador.html" target="_blank" class="cta-button" id="btnSimularConsorcio">
+      🧮 Simular Consórcio
+    </a>
+  </div>
+
   <div class="whatsapp-link">
     <a href="https://wa.me/5549933816445?text=Olá!%20Tenho%20interesse%20em%20uma%20simulação%20de%20consórcio%20com%20a%20Raros%20Capital" target="_blank">
       💬 Fale com um consultor via WhatsApp
@@ -185,6 +231,17 @@
 <footer>
   &copy; 2025 Raros Capital — Todos os direitos reservados.
 </footer>
+
+<script>
+  // Evento para rastrear clique no botão Simular Consórcio no Google Analytics
+  document.getElementById('btnSimularConsorcio').addEventListener('click', function() {
+    gtag('event', 'click', {
+      'event_category': 'botao',
+      'event_label': 'Simular Consórcio',
+      'value': 1
+    });
+  });
+</script>
 
 </body>
 </html>
