@@ -3,245 +3,198 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Raros Capital - Consórcios</title>
-
-  <!-- Google Analytics (GA4) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XFQ7KMD7XB"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){ dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'G-XFQ7KMD7XB');
-  </script>
-
+  <title>Simulador de Consórcio - Raros Capital</title>
   <style>
-    /* ...mesmo estilo que antes, para não ficar repetitivo, copie da versão anterior */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    /* Reset básico */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #0d0d0d;
-      color: #ffffff;
-    }
-    header {
-      background: #0d0d0d;
-      color: #d4af37;
-      text-align: center;
-      padding: 20px;
-      border-bottom: 2px solid #d4af37;
-    }
-    .hero {
-      text-align: center;
-      padding: 40px 20px;
-      background: #1a1a1a;
-    }
-    .hero h2 {
-      font-size: 2rem;
-      margin-bottom: 10px;
-      color: #d4af37;
-    }
-    .hero p {
-      font-size: 1.1rem;
-      max-width: 600px;
-      margin: 0 auto;
-      color: #ccc;
-    }
-    .features {
+      background-color: #0d0d0d;
+      color: #fff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
       display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
-      padding: 40px 20px;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
     }
-    .feature-card {
-      background: #ffffff;
-      color: #0d0d0d;
-      padding: 25px;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-      flex: 1 1 280px;
-      text-align: center;
-    }
-    .feature-card h3 {
-      color: #d4af37;
-      margin-bottom: 10px;
-    }
-    .contact {
-      background: #1a1a1a;
-      padding: 30px 20px;
-      border-radius: 10px;
-      max-width: 500px;
-      margin: 0 auto;
-    }
-    .contact h3 {
-      text-align: center;
+    h1 {
       color: #d4af37;
       margin-bottom: 20px;
+      text-align: center;
     }
-    form label {
+    .container {
+      background: #1a1a1a;
+      border-radius: 12px;
+      padding: 30px 25px;
+      width: 100%;
+      max-width: 450px;
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+    }
+    label {
       display: block;
-      margin-top: 15px;
-      font-weight: bold;
-    }
-    form input, form select {
-      width: 100%;
-      padding: 10px;
-      margin-top: 6px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 1rem;
-    }
-    form button {
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #d4af37;
       margin-top: 20px;
-      padding: 12px;
+    }
+    select, input[type=number] {
       width: 100%;
-      background: #d4af37;
-      color: #0d0d0d;
-      border: none;
-      font-weight: bold;
-      border-radius: 6px;
-      cursor: pointer;
+      padding: 10px 12px;
       font-size: 1rem;
-    }
-    form button:hover {
-      background: #c49b2e;
-    }
-    .cta-button {
-      display: inline-block;
-      padding: 14px 30px;
-      background: linear-gradient(135deg, #d4af37, #c49b2e);
+      border-radius: 6px;
+      border: none;
+      outline: none;
       color: #0d0d0d;
+      background-color: #d4af37;
       font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+    select:hover, input[type=number]:hover, select:focus, input[type=number]:focus {
+      background-color: #c49b2e;
+    }
+    button {
+      margin-top: 30px;
+      width: 100%;
+      padding: 14px;
       font-size: 1.1rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #d4af37, #c49b2e);
       border: none;
       border-radius: 8px;
-      text-decoration: none;
-      margin: 30px auto;
+      color: #0d0d0d;
+      cursor: pointer;
+      box-shadow: 0 0 15px rgba(212,175,55,0.7);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
-      box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
-      position: relative;
     }
-    .cta-button::after {
-      content: "✨";
-      position: absolute;
-      right: 15px;
-      top: 12px;
-      animation: pulse 1.8s infinite ease-in-out;
-    }
-    .cta-button:hover {
+    button:hover {
       transform: scale(1.05);
-      box-shadow: 0 0 18px rgba(212, 175, 55, 0.8);
+      box-shadow: 0 0 25px rgba(212,175,55,1);
     }
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.3); opacity: 0.6; }
-    }
-    .whatsapp-link {
-      text-align: center;
-      margin-top: 20px;
-    }
-    .whatsapp-link a {
-      color: #25d366;
-      font-weight: bold;
-      text-decoration: none;
-      font-size: 1rem;
-    }
-    footer {
+    .result {
+      margin-top: 30px;
       background: #0d0d0d;
-      color: #aaa;
-      text-align: center;
-      padding: 20px 10px;
-      font-size: 0.9rem;
-      border-top: 2px solid #d4af37;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 12px rgba(212, 175, 55, 0.7);
+      font-size: 1.1rem;
+      line-height: 1.5;
+      color: #f0e68c;
     }
-    @media (max-width: 600px) {
-      .features {
-        flex-direction: column;
+    .highlight {
+      color: #d4af37;
+      font-weight: 700;
+    }
+    @media(max-width: 500px){
+      .container {
+        padding: 20px 15px;
+        max-width: 100%;
       }
     }
   </style>
 </head>
 <body>
 
-<header>
-  <h1>Raros Capital</h1>
-</header>
+  <h1>Simulador de Consórcio - Raros Capital</h1>
 
-<section class="hero">
-  <h2>Consórcios Inteligentes</h2>
-  <p>Conquiste seu imóvel, carro ou serviço com planejamento e exclusividade. Sem juros. Sem burocracia.</p>
-</section>
+  <div class="container">
+    <form id="simuladorForm">
+      <label for="tipoBem">Tipo de Consórcio</label>
+      <select id="tipoBem" required>
+        <option value="">Selecione</option>
+        <option value="imovel">Imóvel</option>
+        <option value="veiculo">Veículo</option>
+      </select>
 
-<section class="features">
-  <div class="feature-card">
-    <h3>✔ Sem Juros</h3>
-    <p>Pagamentos justos, sem os altos juros dos financiamentos.</p>
-  </div>
-  <div class="feature-card">
-    <h3>💼 Parcelas Flexíveis</h3>
-    <p>Planos sob medida para seu orçamento e metas.</p>
-  </div>
-  <div class="feature-card">
-    <h3>🤝 Suporte Premium</h3>
-    <p>Acompanhamento consultivo do início ao fim.</p>
-  </div>
-</section>
+      <label for="valorBem">Valor do Bem (R$)</label>
+      <input
+        type="number"
+        id="valorBem"
+        placeholder="Digite o valor desejado"
+        min="0"
+        step="1000"
+        required
+        disabled
+      />
 
-<section class="contact" id="contato">
-  <h3>Solicite sua Simulação</h3>
-  <form action="https://formsubmit.co/fabricio@raroscapital.com.br" method="POST">
-    <input type="hidden" name="_captcha" value="false">
-    <input type="hidden" name="_subject" value="Novo Lead - Raros Capital">
-    <input type="hidden" name="_template" value="box">
-    <input type="hidden" name="_next" value="https://fabricioarturcuchi.github.io/site-consorcio/obrigado.html">
+      <button type="submit">Simular</button>
+    </form>
 
-    <label for="nome">Nome completo *</label>
-    <input type="text" id="nome" name="Nome" required />
-
-    <label for="telefone">Telefone *</label>
-    <input type="tel" id="telefone" name="Telefone" required placeholder="(XX) XXXXX-XXXX" />
-
-    <label for="email">E-mail *</label>
-    <input type="email" id="email" name="Email" required />
-
-    <label for="tipoConsorcio">Tipo de Consórcio *</label>
-    <select id="tipoConsorcio" name="Tipo de Consórcio" required>
-      <option value="">Selecione</option>
-      <option value="Imóvel">Imóvel</option>
-      <option value="Veículo">Veículo</option>
-      <option value="Serviço">Serviço</option>
-      <option value="Outros">Outros</option>
-    </select>
-
-    <button type="submit">Enviar</button>
-  </form>
-
-  <!-- Botão com animação -->
-  <div style="text-align: center; margin-top: 30px;">
-    <a href="https://fabricioarturcuchi.github.io/raros-capital/" target="_blank" class="cta-button" id="btnSimularConsorcio">
-      🧮 Simular Consórcio
-    </a>
+    <div class="result" id="resultado" style="display:none;"></div>
   </div>
 
-  <div class="whatsapp-link">
-    <a href="https://wa.me/5549933816445?text=Olá!%20Tenho%20interesse%20em%20uma%20simulação%20de%20consórcio%20com%20a%20Raros%20Capital" target="_blank">
-      💬 Fale com um consultor via WhatsApp
-    </a>
-  </div>
-</section>
+  <script>
+    const tipoBemSelect = document.getElementById('tipoBem');
+    const valorBemInput = document.getElementById('valorBem');
+    const resultadoDiv = document.getElementById('resultado');
+    const form = document.getElementById('simuladorForm');
 
-<footer>
-  &copy; 2025 Raros Capital — Todos os direitos reservados.
-</footer>
+    // Limites e parcelas por tipo
+    const limites = {
+      imovel: { min: 200000, max: 500000, taxa: 0.22, parcelas: 220 },
+      veiculo: { min: 65000, max: 130000, taxa: 0.16, parcelas: 84 }
+    };
 
-<script>
-  document.getElementById('btnSimularConsorcio').addEventListener('click', function() {
-    gtag('event', 'click', {
-      'event_category': 'botao',
-      'event_label': 'Simular Consórcio',
-      'value': 1
+    // Habilita input e ajusta placeholder ao mudar tipo de bem
+    tipoBemSelect.addEventListener('change', () => {
+      const tipo = tipoBemSelect.value;
+      if (!tipo) {
+        valorBemInput.disabled = true;
+        valorBemInput.value = '';
+        valorBemInput.placeholder = "Selecione o tipo primeiro";
+        resultadoDiv.style.display = 'none';
+        return;
+      }
+
+      valorBemInput.disabled = false;
+      valorBemInput.value = '';
+      valorBemInput.placeholder = `De R$ ${limites[tipo].min.toLocaleString('pt-BR')} a R$ ${limites[tipo].max.toLocaleString('pt-BR')}`;
+      resultadoDiv.style.display = 'none';
     });
-  });
-</script>
+
+    // Função para formatar valores em R$
+    function formatBRL(valor) {
+      return valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    }
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+
+      const tipo = tipoBemSelect.value;
+      const valor = Number(valorBemInput.value);
+
+      if (!tipo || isNaN(valor)) {
+        alert("Preencha corretamente os campos!");
+        return;
+      }
+
+      // Validar valor dentro do limite
+      if (valor < limites[tipo].min || valor > limites[tipo].max) {
+        alert(`O valor para ${tipo === 'imovel' ? 'Imóvel' : 'Veículo'} deve estar entre R$ ${limites[tipo].min.toLocaleString('pt-BR')} e R$ ${limites[tipo].max.toLocaleString('pt-BR')}.`);
+        return;
+      }
+
+      const taxa = limites[tipo].taxa;
+      const valorTaxa = valor * taxa;
+      const valorTotal = valor + valorTaxa;
+      const parcelas = limites[tipo].parcelas;
+      const valorParcela = valorTotal / parcelas;
+
+      // Mostrar resultado
+      resultadoDiv.style.display = 'block';
+      resultadoDiv.innerHTML = `
+        <p><span class="highlight">Tipo de Consórcio:</span> ${tipo === 'imovel' ? 'Imóvel' : 'Veículo'}</p>
+        <p><span class="highlight">Valor do Bem:</span> ${formatBRL(valor)}</p>
+        <p><span class="highlight">Taxa Administrativa (${(taxa*100).toFixed(0)}%):</span> ${formatBRL(valorTaxa)}</p>
+        <p><span class="highlight">Valor Total do Consórcio:</span> ${formatBRL(valorTotal)}</p>
+        <p><span class="highlight">Quantidade de parcelas:</span> ${parcelas}</p>
+        <p><span class="highlight">Parcela mensal estimada:</span> ${formatBRL(valorParcela)}</p>
+      `;
+    });
+  </script>
 
 </body>
 </html>
