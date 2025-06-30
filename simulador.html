@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Raros Capital - Consórcios</title>
+
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XFQ7KMD7XB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-XFQ7KMD7XB');
+  </script>
+
+  <style>
+    /* ...mesmo estilo que antes, para não ficar repetitivo, copie da versão anterior */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #0d0d0d;
+      color: #ffffff;
+    }
+    header {
+      background: #0d0d0d;
+      color: #d4af37;
+      text-align: center;
+      padding: 20px;
+      border-bottom: 2px solid #d4af37;
+    }
+    .hero {
+      text-align: center;
+      padding: 40px 20px;
+      background: #1a1a1a;
+    }
+    .hero h2 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      color: #d4af37;
+    }
+    .hero p {
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+      color: #ccc;
+    }
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+    .feature-card {
+      background: #ffffff;
+      color: #0d0d0d;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      flex: 1 1 280px;
+      text-align: center;
+    }
+    .feature-card h3 {
+      color: #d4af37;
+      margin-bottom: 10px;
+    }
+    .contact {
+      background: #1a1a1a;
+      padding: 30px 20px;
+      border-radius: 10px;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    .contact h3 {
+      text-align: center;
+      color: #d4af37;
+      margin-bottom: 20px;
+    }
+    form label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    form input, form select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 6px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+    form button {
+      margin-top: 20px;
+      padding: 12px;
+      width: 100%;
+      background: #d4af37;
+      color: #0d0d0d;
+      border: none;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    form button:hover {
+      background: #c49b2e;
+    }
+    .cta-button {
+      display: inline-block;
+      padding: 14px 30px;
+      background: linear-gradient(135deg, #d4af37, #c49b2e);
+      color: #0d0d0d;
+      font-weight: bold;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      margin: 30px auto;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+      position: relative;
+    }
+    .cta-button::after {
+      content: "✨";
+      position: absolute;
+      right: 15px;
+      top: 12px;
+      animation: pulse 1.8s infinite ease-in-out;
+    }
+    .cta-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 18px rgba(212, 175, 55, 0.8);
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.3); opacity: 0.6; }
+    }
+    .whatsapp-link {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .whatsapp-link a {
+      color: #25d366;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+    footer {
+      background: #0d0d0d;
+      color: #aaa;
+      text-align: center;
+      padding: 20px 10px;
+      font-size: 0.9rem;
+      border-top: 2px solid #d4af37;
+    }
+    @media (max-width: 600px) {
+      .features {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Raros Capital</h1>
+</header>
+
+<section class="hero">
+  <h2>Consórcios Inteligentes</h2>
+  <p>Conquiste seu imóvel, carro ou serviço com planejamento e exclusividade. Sem juros. Sem burocracia.</p>
+</section>
+
+<section class="features">
+  <div class="feature-card">
+    <h3>✔ Sem Juros</h3>
+    <p>Pagamentos justos, sem os altos juros dos financiamentos.</p>
+  </div>
+  <div class="feature-card">
+    <h3>💼 Parcelas Flexíveis</h3>
+    <p>Planos sob medida para seu orçamento e metas.</p>
+  </div>
+  <div class="feature-card">
+    <h3>🤝 Suporte Premium</h3>
+    <p>Acompanhamento consultivo do início ao fim.</p>
+  </div>
+</section>
+
+<section class="contact" id="contato">
+  <h3>Solicite sua Simulação</h3>
+  <form action="https://formsubmit.co/fabricio@raroscapital.com.br" method="POST">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_subject" value="Novo Lead - Raros Capital">
+    <input type="hidden" name="_template" value="box">
+    <input type="hidden" name="_next" value="https://fabricioarturcuchi.github.io/site-consorcio/obrigado.html">
+
+    <label for="nome">Nome completo *</label>
+    <input type="text" id="nome" name="Nome" required />
+
+    <label for="telefone">Telefone *</label>
+    <input type="tel" id="telefone" name="Telefone" required placeholder="(XX) XXXXX-XXXX" />
+
+    <label for="email">E-mail *</label>
+    <input type="email" id="email" name="Email" required />
+
+    <label for="tipoConsorcio">Tipo de Consórcio *</label>
+    <select id="tipoConsorcio" name="Tipo de Consórcio" required>
+      <option value="">Selecione</option>
+      <option value="Imóvel">Imóvel</option>
+      <option value="Veículo">Veículo</option>
+      <option value="Serviço">Serviço</option>
+      <option value="Outros">Outros</option>
+    </select>
+
+    <button type="submit">Enviar</button>
+  </form>
+
+  <!-- Botão com animação -->
+  <div style="text-align: center; margin-top: 30px;">
+    <a href="https://fabricioarturcuchi.github.io/raros-capital/" target="_blank" class="cta-button" id="btnSimularConsorcio">
+      🧮 Simular Consórcio
+    </a>
+  </div>
+
+  <div class="whatsapp-link">
+    <a href="https://wa.me/5549933816445?text=Olá!%20Tenho%20interesse%20em%20uma%20simulação%20de%20consórcio%20com%20a%20Raros%20Capital" target="_blank">
+      💬 Fale com um consultor via WhatsApp
+    </a>
+  </div>
+</section>
+
+<footer>
+  &copy; 2025 Raros Capital — Todos os direitos reservados.
+</footer>
+
+<script>
+  document.getElementById('btnSimularConsorcio').addEventListener('click', function() {
+    gtag('event', 'click', {
+      'event_category': 'botao',
+      'event_label': 'Simular Consórcio',
+      'value': 1
+    });
+  });
+</script>
+
+</body>
+</html>
