@@ -31,7 +31,7 @@
       border-radius: 12px;
       padding: 30px 25px;
       width: 100%;
-      max-width: 450px;
+      max-width: 480px;
       box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
     }
     label {
@@ -41,7 +41,7 @@
       color: #d4af37;
       margin-top: 20px;
     }
-    select, input[type=number] {
+    input, select {
       width: 100%;
       padding: 10px 12px;
       font-size: 1rem;
@@ -53,7 +53,7 @@
       font-weight: bold;
       transition: background-color 0.3s ease;
     }
-    select:hover, input[type=number]:hover, select:focus, input[type=number]:focus {
+    input:hover, select:hover, input:focus, select:focus {
       background-color: #c49b2e;
     }
     button {
@@ -88,7 +88,7 @@
       color: #d4af37;
       font-weight: 700;
     }
-    @media(max-width: 500px){
+    @media(max-width: 520px){
       .container {
         padding: 20px 15px;
         max-width: 100%;
@@ -102,17 +102,27 @@
 
   <div class="container">
     <form id="simuladorForm">
-      <label for="tipoBem">Tipo de Consórcio</label>
-      <select id="tipoBem" required>
+      <label for="nome">Nome completo *</label>
+      <input type="text" id="nome" name="Nome" placeholder="Seu nome completo" required />
+
+      <label for="telefone">Telefone *</label>
+      <input type="tel" id="telefone" name="Telefone" placeholder="(XX) XXXXX-XXXX" required />
+
+      <label for="email">E-mail *</label>
+      <input type="email" id="email" name="Email" placeholder="email@exemplo.com" required />
+
+      <label for="tipoBem">Tipo de Consórcio *</label>
+      <select id="tipoBem" name="Tipo de Consórcio" required>
         <option value="">Selecione</option>
         <option value="imovel">Imóvel</option>
         <option value="veiculo">Veículo</option>
       </select>
 
-      <label for="valorBem">Valor do Bem (R$)</label>
+      <label for="valorBem">Valor do Bem (R$) *</label>
       <input
         type="number"
         id="valorBem"
+        name="Valor do Bem"
         placeholder="Digite o valor desejado"
         min="0"
         step="1000"
@@ -132,13 +142,11 @@
     const resultadoDiv = document.getElementById('resultado');
     const form = document.getElementById('simuladorForm');
 
-    // Limites e parcelas por tipo
     const limites = {
       imovel: { min: 200000, max: 500000, taxa: 0.22, parcelas: 220 },
       veiculo: { min: 65000, max: 130000, taxa: 0.16, parcelas: 84 }
     };
 
-    // Habilita input e ajusta placeholder ao mudar tipo de bem
     tipoBemSelect.addEventListener('change', () => {
       const tipo = tipoBemSelect.value;
       if (!tipo) {
@@ -148,51 +156,81 @@
         resultadoDiv.style.display = 'none';
         return;
       }
-
       valorBemInput.disabled = false;
       valorBemInput.value = '';
       valorBemInput.placeholder = `De R$ ${limites[tipo].min.toLocaleString('pt-BR')} a R$ ${limites[tipo].max.toLocaleString('pt-BR')}`;
       resultadoDiv.style.display = 'none';
     });
 
-    // Função para formatar valores em R$
     function formatBRL(valor) {
       return valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
     }
 
-    form.addEventListener('submit', e => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      const tipo = tipoBemSelect.value;
-      const valor = Number(valorBemInput.value);
+      // Dados do formulário
+      const nome = form.nome.value.trim();
+      const telefone = form.telefone.value.trim();
+      const email = form.email.value.trim();
+      const tipo = form['Tipo de Consórcio'].value;
+      const valor = Number(form['Valor do Bem'].value);
 
-      if (!tipo || isNaN(valor)) {
-        alert("Preencha corretamente os campos!");
+      // Validações
+      if (!nome || !telefone || !email || !tipo || !valor) {
+        alert("Por favor, preencha todos os campos obrigatórios.");
         return;
       }
 
-      // Validar valor dentro do limite
       if (valor < limites[tipo].min || valor > limites[tipo].max) {
         alert(`O valor para ${tipo === 'imovel' ? 'Imóvel' : 'Veículo'} deve estar entre R$ ${limites[tipo].min.toLocaleString('pt-BR')} e R$ ${limites[tipo].max.toLocaleString('pt-BR')}.`);
         return;
       }
 
+      // Cálculos
       const taxa = limites[tipo].taxa;
       const valorTaxa = valor * taxa;
       const valorTotal = valor + valorTaxa;
       const parcelas = limites[tipo].parcelas;
       const valorParcela = valorTotal / parcelas;
 
-      // Mostrar resultado
+      // Exibir resultado
       resultadoDiv.style.display = 'block';
       resultadoDiv.innerHTML = `
+        <p><span class="highlight">Nome:</span> ${nome}</p>
+        <p><span class="highlight">Telefone:</span> ${telefone}</p>
+        <p><span class="highlight">E-mail:</span> ${email}</p>
         <p><span class="highlight">Tipo de Consórcio:</span> ${tipo === 'imovel' ? 'Imóvel' : 'Veículo'}</p>
         <p><span class="highlight">Valor do Bem:</span> ${formatBRL(valor)}</p>
-        <p><span class="highlight">Taxa Administrativa (${(taxa*100).toFixed(0)}%):</span> ${formatBRL(valorTaxa)}</p>
+        <p><span class="highlight">Taxa Administrativa (${(taxa * 100).toFixed(0)}%):</span> ${formatBRL(valorTaxa)}</p>
         <p><span class="highlight">Valor Total do Consórcio:</span> ${formatBRL(valorTotal)}</p>
         <p><span class="highlight">Quantidade de parcelas:</span> ${parcelas}</p>
         <p><span class="highlight">Parcela mensal estimada:</span> ${formatBRL(valorParcela)}</p>
       `;
+
+      // Enviar dados por POST para formsubmit.co (em background, sem redirecionar)
+      const formData = new FormData();
+      formData.append('Nome', nome);
+      formData.append('Telefone', telefone);
+      formData.append('Email', email);
+      formData.append('Tipo de Consórcio', tipo === 'imovel' ? 'Imóvel' : 'Veículo');
+      formData.append('Valor do Bem', formatBRL(valor));
+      formData.append('_subject', 'Novo Lead - Simulador Raros Capital');
+      formData.append('_captcha', 'false'); // desativa captcha
+      formData.append('_template', 'table');
+      formData.append('_next', ''); // sem redirecionamento
+
+      try {
+        await fetch('https://formsubmit.co/ajax/fabricio@raroscapital.com.br', {
+          method: 'POST',
+          body: formData,
+          headers: { 'Accept': 'application/json' }
+        });
+        // sem alertas para o usuário
+      } catch (error) {
+        console.error('Erro ao enviar os dados:', error);
+        // opcional: não mostramos nada para o usuário
+      }
     });
   </script>
 
